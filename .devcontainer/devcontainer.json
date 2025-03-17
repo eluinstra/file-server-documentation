@@ -16,7 +16,7 @@
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [80,3000],
   // Use 'postCreateCommand' to run commands after the container is created.
-  // "postCreateCommand": "npm install",
+  "postCreateCommand": "npm install",
   // "postStartCommand": "npm run start -- --host 0.0.0.0 --poll 1000",
   // Configure tool-specific properties.
   "customizations": {

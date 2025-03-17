@@ -4,6 +4,9 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+const globalVariables = {
+}
+
 const config: Config = {
   title: 'My Site',
   tagline: 'Dinosaurs are cool',
@@ -63,7 +66,15 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
-
+  markdown: {
+    preprocessor: ({filePath, fileContent}) => {
+      let content = fileContent;
+      for (const variable in globalVariables) {
+        content = content.replaceAll('@'+variable+'@', globalVariables[variable]);
+      }
+      return content;
+    },
+  },
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
@@ -138,6 +149,9 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+  plugins: [[require.resolve("docusaurus-lunr-search"), {
+    enableHighlight: true
+  }]],
 };
 
 export default config;
