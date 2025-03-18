@@ -1,0 +1,71 @@
+@startuml Staging Omgeving - sequence diagram - synchroniseren 1.5
+!theme reddress-lightorange
+
+skinparam backgroundColor transparent
+' skinparam responseMessageBelowArrow true
+
+title Synchroniseren Staging Omgeving
+
+participant "Custom Application" as app
+database "File Share" as file
+participant "File Server" as fs
+participant "File Client" as fc
+
+... <b>Downloaden File ...
+
+autonumber 1.1
+
+app -> file: copy file
+activate file
+
+file --> app
+deactivate file
+
+app -> fs: upload file request
+activate fs
+
+fs --> app
+deactivate fs
+
+fs -> file: copy file
+activate file
+
+file --> fs
+deactivate file
+
+fc -> fs: download file
+activate fs
+
+fs --> fc
+deactivate fs
+
+... <b>Uploaden File ...
+
+autonumber 1.1
+
+fc -> fs: upload file
+activate fs
+
+fs --> fc
+deactivate fs
+
+app -> fs: download file request
+activate fs
+
+fs --> app
+deactivate fs
+
+fs -> file: copy file
+activate file
+
+file --> fs
+deactivate file
+
+app -> file: copy file
+activate file
+
+file --> app
+deactivate file
+
+...
+@enduml
