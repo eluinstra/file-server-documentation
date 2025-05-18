@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Configuration
+# User Manual
 
 ### Steps to configure a user and offer a file to download
 
