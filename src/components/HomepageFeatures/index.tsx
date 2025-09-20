@@ -9,8 +9,7 @@ type FeatureItem = {
   description: ReactNode;
 };
 
-const FeatureList: FeatureItem[] = [
-];
+const FeatureList: FeatureItem[] = [];
 
 function Feature({title, Svg, description}: FeatureItem) {
   return (

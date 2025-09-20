@@ -30,8 +30,8 @@ De File Server consists of the following file: file-server-1.0.0.jar
 For configuration of the File Server see here. The application writes logging to a logfile (see here). The application also uses a database (see here)
 
 - create directory `file-server`
-- copy file-server-1.0.0 to file-server
-- cd file-server
+- copy `file-server-1.0.0.jar` to `file-server`
+- cd `file-server`
 - create directory `files`
 
 ### Configuration
@@ -68,6 +68,16 @@ truststore.path=dev/luin/file/server/core/truststore.p12
 truststore.password=password
 ```
 
+##### Database Properties
+
+```properties
+jdbc.driverClassName=org.hsqldb.jdbcDriver
+# jdbc.url=jdbc:hsqldb:mem:file_server
+jdbc.url=jdbc:hsqldb:hsql://localhost:9001/file_server
+jdbc.username=sa
+jdbc.password=
+```
+
 ##### File Properties
 
 ```properties
@@ -90,7 +100,15 @@ jdbc.password=
 
 #### Advanced Properties
 
+##### SSL properties
+
+```properties
+server.ssl.protocols=TLSv1.3,TLSv1.2
+server.ssl.cipherSuites=TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+```
+
 ##### Soap/Rest Attachment Properties
+
 ```properties
 attachment.memoryTreshold=131072
 attachment.outputDirectory=
@@ -179,8 +197,8 @@ De File Client consists of the following file: file-client-1.0.0.jar
 For configuration of the File Server see here. The application writes logging to a logfile (see here). The application also uses a database (see here) an writes the files to a file share.
 
 - create directory `file-client`
-- copy file-client-1.0.0 to file-client
-- cd file-client
+- copy `file-client-1.0.0.jar` to `file-client`
+- cd `file-client`
 - create directory `files`
 
 ### Configuration
@@ -189,17 +207,15 @@ This section describes the properties to configure the File Server up- and downo
 
 #### Basic Properties
 
-##### Server Properties
+##### SSL Keystore Properties
 
 ```properties
-file.baseDir=
-file.directoryDepth=3
-file.filenameLength=32
-file.share.upload.location=shared/upload
-file.share.download.location=shared/download
+keystore.type=PKCS12
+keystore.path=dev/luin/file/client/core/keystore.p12
+keystore.password=password
 ```
 
-##### SSL Keystore Properties
+##### SSL Client Keystore Properties
 
 ```properties
 client.keystore.type=PKCS12
@@ -217,11 +233,21 @@ truststore.path=dev/luin/file/client/core/truststore.p12
 truststore.password=password
 ```
 
+##### File Properties
+
+```properties
+file.baseDir=files
+file.directoryDepth=3
+file.filenameLength=32
+file.share.upload.location=shared/upload
+file.share.download.location=shared/download
+```
+
 ##### Database Properties
 
 ```properties
 jdbc.driverClassName=org.hsqldb.jdbcDriver
-jdbc.url=jdbc:hsqldb:mem:file_client
+jdbc.url=jdbc:hsqldb:hsql://localhost:9000/file_client
 jdbc.username=sa
 jdbc.password=
 ```
@@ -257,8 +283,6 @@ uploadTask.retry.maxMultiplier=1
 ##### SSL Properties
 
 ```properties
-client.ssl.protocols=TLSv1.3,TLSv1.2
-client.ssl.cipherSuites=TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
 client.ssl.enabledProtocols=TLSv1.3,TLSv1.2
 client.ssl.enabledCipherSuites=TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
 client.ssl.verifyHostnames=true
