@@ -11,7 +11,7 @@ this site is still under construction
 ## File Server
 
 The File Server is developed to exchange files with other parties. The tus protocol is used to upload files to the File Server. The HTTP protocol is used to download Files from the File Server. The File Server uses SSL client certificates to authenticate clients.
-You can use the [File Client](#file-client) to exchange files with the File Server.
+You can use the [File Client](#file-client) to exchange files with the File Server. You can also use a tus client to upload files to the File Server and a HTTP client to download files from the File Server.
 
 The File Server stores client and file data in the database and the files on the filesystem.
 
@@ -19,13 +19,13 @@ The File Server stores client and file data in the database and the files on the
 
 The File Server offers a REST and a SOAP interface. Applications can exchange files with the File Server through these interfaces directly or use a File Share instead.
 
-Before the File Server can exchange files with a client, the client has to be registered with the File Server using SSL client certificates.
+Before the File Server can exchange files with a client, the client has to be registered with the File Server using its SSL client certificate.
 
 The FileServer can be used for Grote Berichten file transfer.
 
 ## File Client
 
-The File Client can be used to upload and download files with the [File Server](#file-server).
+The File Client can be used to exchange files with the [File Server](#file-server).
 
 The File Client stores file data in the database and the files on the filesystem.
 
