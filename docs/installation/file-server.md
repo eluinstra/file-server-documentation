@@ -8,7 +8,7 @@ sidebar_position: 2
 
 - download [file-server-1.0.0](https://github.com/eluinstra/file-server/releases/download/1.0.0/file-server-1.0.0.jar)  
 - JDBC driver for the database (see [here](database.md))
-- Database with user account
+- Database and user account with create table permissions
 
 ### Optional
 
@@ -21,12 +21,25 @@ For configuration of the File Server see here. The application writes logging to
 
 - create directory `file-server`
 - copy `file-server-1.0.0.jar` to `file-server`
-- cd `file-server`
-- create directory `files`
+- create directory `file-server/files`
 
 ## Configuration
 
-This section describes the properties to configure the File Server up- and downoad interfaces. You can override these properties in `$CONFIG_DIR/file-server.properties`.
+This section describes how to configure the File Server.
+
+Create the file `file-server/file-server.properties` and [configure the basic properties](#basic-properties).
+
+## Start
+
+Start the file-server with the SOAP and REST endpoints default on port 8080 and the File endpoint on port 8443, using JDBC driver \<jdbc-driver>.jar. See [here](database.md) for the supported databases.
+
+```sh
+java -cp \<jdbc-driver>.jar:file-server-1.0.0.jar dev.luin.file.server.Start
+```
+
+See [here](#commandline-configuration) for more command line options.
+
+## Properties
 
 ### Basic Properties
 
@@ -167,4 +180,97 @@ usage: Start [-authentication] [-cipherSuites <arg>]
  -trustStorePassword <arg>         set truststore password [default: <none>]
  -trustStorePath <arg>             set truststore path [default: <none>]
  -trustStoreType <arg>             set truststore type [default: PKCS12]
+```
+
+### Basic Configuration
+
+#### Start using a PostgreSQL JDBC driver
+
+```sh
+java -cp postgresql-42.7.3.jar:file-server-1.0.0.jar dev.luin.file.server.Start
+```
+
+#### Start on port 8000
+
+Start SOAP/REST endpoint on port 8000 (instead of 8080)
+
+```sh
+java -cp file-server-1.0.0.jar dev.luin.file.server.Start -port 8000
+```
+
+#### Start with config directory conf/
+
+By default the config directory is the directory from which you start the file-server. You can change the config directory by setting `configDir`
+
+```sh
+java -cp file-server-1.0.0.jar dev.luin.file.server.Start -configDir conf/
+```
+
+#### Start with a custom log4j2 file log4j2.xml
+
+```sh
+java -Dlog4j.configurationFile=log4j2.xml -cp file-server-1.0.0.jar dev.luin.file.server.Start
+```
+
+#### Start without using the default Java truststore
+
+```sh
+java -Djavax.net.ssl.trustStore= -cp file-server-1.0.0.jar dev.luin.file.server.Start
+```
+
+#### Start with HTTPS
+
+Start with HTTPS SOAP/REST endpoint using keystore `keystore.p12`
+
+```sh
+java -Djavax.net.ssl.trustStore= -cp file-server-1.0.0.jar dev.luin.file.server.Start \
+-ssl -keyStoreType PKCS12 -keyStorePath keystore.p12 -keyStorePassword password
+```
+
+### Advanced Configuration
+
+#### Start using IPv4 only sockets
+
+```sh
+java -Djava.net.preferIPv4Stack=true -cp file-server-1.0.0.jar dev.luin.file.server.Start
+```
+
+#### Start using basic authentication
+
+Start using basic authentication on SOAP/REST endpoint.
+
+```sh
+java -cp file-server-1.0.0.jar dev.luin.file.server.Start -authentication
+```
+
+#### Start with HTTPS and client authentication
+
+Start with HTTPS SOAP/REST endpoint using keystore `keystore.p12`
+and require SSL client authentication using truststore `truststore.p12` (which holds the client's certificate chain)
+
+```sh
+java -Djavax.net.ssl.trustStore= -cp file-server-1.0.0.jar dev.luin.file.server.Start \
+-ssl -keyStoreType PKCS12 -keyStorePath keystore.p12 -keyStorePassword password \
+-clientAuthentication -trustStoreType PKCS12 -trustStorePath truststore.p12 -trustStorePassword password
+```
+
+#### Start with HTTPS, client authentication and client certifiate authentication
+
+Start with HTTPS Web/SOAP interface using keystore `keystore.p12`
+and require SSL client authentication using truststore `truststore.p12` (which holds the client's certificate chain)
+and authenticate client SSL certificate using `clientTruststore.p12` (which holds the client's certificate)
+
+```sh
+java -Djavax.net.ssl.trustStore= -cp file-server-1.0.0.jar dev.luin.file.server.Start \
+-ssl -keyStoreType PKCS12 -keyStorePath keystore.p12 -keyStorePassword password \
+-clientAuthentication -trustStoreType PKCS12 -trustStorePath truststore.p12 -trustStorePassword password \
+-authentication -clientTrustStoreType PKCS12 -clientTrustStorePath clientTruststore.p12 -clientTrustStorePassword password
+```
+
+#### Start Health service on port 8089
+
+Start Health service on port 8089 (instead of default port 8008)
+
+```sh
+java -Djavax.net.ssl.trustStore= -cp file-server-1.0.0.jar dev.luin.file.server.Start -health -healthPort 8089
 ```

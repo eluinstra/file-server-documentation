@@ -21,11 +21,7 @@ The File Server and Client support the following databases:
 
 ## Database Scripts
 
-Database migration through Flyway is enabled through the following
-
-The database master scripts can be found [here](https://github.com/eluinstra/ebms-core/tree/ebms-core-@branch.version@/resources/scripts/database/master/)  
-The database update scripts can be found [here](https://github.com/eluinstra/ebms-core/tree/ebms-core-@branch.version@/src/main/resources/nl/clockwork/ebms/db/migration)  
-ebms-core also supports automatic database migration through [Flyway](#flyway)
+The File-Server or File-Client supports automatic database migration through Flyway. The database scripts for the File-Server can also be found [here](https://github.com/eluinstra/file-server-core/tree/master/src/main/resources/dev/luin/file/server/core/db/migration) and the database scripts for the File-Server can also be found [here](https://github.com/eluinstra/file-client-core/tree/master/src/main/resources/dev/luin/file/client/core/db/migration).
 
 ## Database Configuration
 
@@ -55,8 +51,6 @@ Tested with DB2 11.5.4.0
 Download drivers [here](https://www.ibm.com/support/pages/db2-jdbc-driver-versions-and-downloads)
 
 ### H2
-
-since [v2.17.2](release#ebms-core-2172jar)
 
 ```properties
 # JDBC and XA driver
@@ -105,11 +99,11 @@ Tested with MariaDB 10.3.22
 Download drivers [here](https://downloads.mariadb.org/connector-java/)
 
 Download the right flyway-mysql driver [here](https://mvnrepository.com/artifact/org.flywaydb/flyway-mysql) and add it to the classpath next to the database driver
-Check the pom.xml of ebms-admin for the right version of the flyway-mysql library
+Check the pom.xml of File-Server or File-Client for the right version of the flyway-mysql library
 
 ### MS SQL Server
 
-We strongly advise to **not** use a MSSQL Database with the EbMS Adapter if you expect a moderate to high message load, because MSSQL cannot handle that because of Page Locking.
+We strongly advise to **not** use a MSSQL Database with the File-Server or File-Client if you expect a moderate to high message load, because MSSQL cannot handle that because of Page Locking.
 
 ```properties
 # JDBC driver
@@ -124,7 +118,7 @@ Tested with MS SQL Server 2019
 Download drivers [here](https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server)
 
 Download the right flyway-sqlserver driver [here](https://mvnrepository.com/artifact/org.flywaydb/flyway-sqlserver) and add it to the classpath next to the database driver
-Check the pom.xml of ebms-admin for the right version of the flyway-sqlserver library
+Check the pom.xml of File-Server or File-Client for the right version of the flyway-sqlserver library
 
 ### MySQL
 
