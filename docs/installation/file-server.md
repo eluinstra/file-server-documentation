@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## Prerequisites
 
-- download [file-server-1.0.0](https://github.com/eluinstra/file-server/releases/download/1.0.0/file-server-1.0.0.jar)  
+- download [file-server-1.0.0](https://github.com/eluinstra/file-server/releases/download/1.0.0/file-server-1.0.0.jar)
 - JDBC driver for the database (see [here](database.md))
 - Database and user account with create table permissions
 
@@ -17,7 +17,7 @@ sidebar_position: 2
 ## Installation
 
 De File Server consists of the following file: file-server-1.0.0.jar
-For configuration of the File Server see here. The application writes logging to a logfile (see here). The application also uses a database (see [here](database.md))
+For configuration of the File Server see [here](#configuration). The application writes logging to a logfile (see [here](#start-with-a-custom-log4j2-file-log4j2xml)). The application also uses a database (see [here](database.md)) to store user and file information and writes the files to a file share.
 
 - create directory `file-server`
 - copy `file-server-1.0.0.jar` to `file-server`
