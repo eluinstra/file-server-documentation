@@ -21,7 +21,7 @@ The File Server and Client support the following databases:
 
 ## Database Scripts
 
-The File-Server or File-Client supports automatic database migration through Flyway. You have to provide a database user with create table permissions so the tables are created automatically when the application is started for the first time.
+The File-Server and File-Client support automatic database migration through Flyway. You have to provide a database user with create table permissions so the tables are created automatically when the application is started for the first time.
 
 The database scripts for the File-Server can also be found [here](https://github.com/eluinstra/file-server-core/tree/master/src/main/resources/dev/luin/file/server/core/db/migration) and the database scripts for the File-Server can also be found [here](https://github.com/eluinstra/file-client-core/tree/master/src/main/resources/dev/luin/file/client/core/db/migration).
 
@@ -38,8 +38,6 @@ jdbc.password=<password>
 
 ### DB2
 
-since v2.14.0
-
 ```properties
 # JDBC driver
 jdbc.driverClassName=com.ibm.db2.jcc.DB2Driver
@@ -47,8 +45,6 @@ jdbc.driverClassName=com.ibm.db2.jcc.DB2Driver
 jdbc.driverClassName=com.ibm.db2.jcc.DB2XADataSource
 jdbc.url=jdbc:db2://<host>:<port>/<dbname>
 ```
-
-Tested with DB2 11.5.4.0
 
 Download drivers [here](https://www.ibm.com/support/pages/db2-jdbc-driver-versions-and-downloads)
 
@@ -67,8 +63,6 @@ jdbc.url=jdbc:h2:<path>
 jdbc.url=jdbc:h2:tcp://<host>:<port>/<path>
 ```
 
-Tested with H2 1.4.200
-
 ### HSQLDB
 
 ```properties
@@ -84,8 +78,6 @@ jdbc.url=jdbc:hsqldb:file:<path>
 jdbc.url=jdbc:hsqldb:hsql://<host>:<port>/<dbname>
 ```
 
-Tested with HSQLDB 2.5.1
-
 ### MariaDB
 
 ```properties
@@ -95,8 +87,6 @@ jdbc.driverClassName=org.mariadb.jdbc.Driver
 jdbc.driverClassName=org.mariadb.jdbc.MySQLDataSource
 jdbc.url=jdbc:mariadb://<host>:<port>/<dbname>
 ```
-
-Tested with MariaDB 10.3.22
 
 Download drivers [here](https://downloads.mariadb.org/connector-java/)
 
@@ -115,8 +105,6 @@ jdbc.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerXADataSource
 jdbc.url=jdbc:sqlserver://<host>:<port>;[instanceName=<instanceName>;]databaseName=<dbname>;
 ```
 
-Tested with MS SQL Server 2019
-
 Download drivers [here](https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server)
 
 Download the right flyway-sqlserver driver [here](https://mvnrepository.com/artifact/org.flywaydb/flyway-sqlserver) and add it to the classpath next to the database driver
@@ -132,8 +120,6 @@ jdbc.driverClassName=com.mysql.cj.jdbc.MysqlXADataSource
 jdbc.url=jdbc:mysql://<host>:<port>/<dbname>
 ```
 
-Tested with MySQL 8.0.21
-
 Download drivers [here](https://dev.mysql.com/downloads/connector/j/)
 
 ### Oracle
@@ -146,8 +132,6 @@ jdbc.driverClassName=oracle.jdbc.xa.client.OracleXADataSource
 jdbc.url=jdbc:oracle:thin:@<host>:<port>:<dbname>
 ```
 
-Tested with Oracle XE 18c
-
 Download drivers [here](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html)
 
 ### PostgreSQL
@@ -159,7 +143,5 @@ jdbc.driverClassName=org.postgresql.Driver
 jdbc.driverClassName=org.postgresql.xa.PGXADataSource
 jdbc.url=jdbc:postgresql://<host>:<port>/<dbname>
 ```
-
-Tested with PostgreSQL 12.4
 
 Download drivers [here](https://jdbc.postgresql.org/download.html)

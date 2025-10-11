@@ -4,13 +4,9 @@ sidebar_position: 1
 
 # Introduction
 
-:::info
-this site is still under construction
-:::
-
 ## File Server
 
-The File Server is developed to exchange files with other parties. The tus protocol is used to upload files to the File Server. The HTTP protocol is used to download Files from the File Server. The File Server uses SSL client certificates to authenticate clients.
+The File Server is developed to exchange files with other parties. Files can be uploaded to the File Server using the tus protocol. Files can be downloaded from the File Server using the HTTP protocol. The File Server uses SSL client certificates to authenticate a client.
 You can use the [File Client](#file-client) to exchange files with the File Server. You can also use a tus client to upload files to the File Server and a HTTP client to download files from the File Server.
 
 The File Server stores client and file data in the database and the files on the filesystem.
@@ -22,6 +18,8 @@ The File Server offers a REST and a SOAP interface. Applications can exchange fi
 Before the File Server can exchange files with a client, the client has to be registered with the File Server using its SSL client certificate.
 
 The FileServer can be used for Grote Berichten file transfer.
+
+You can find the Installation and Configuration Guide for the FileServer [here](installation/file-server). The [User Manual](configuration) describes how to configure users and exchange files. [Here](example) you can find an example how to exchange files between the FileServer and FileClient using the default configuration.
 
 ## File Client
 
@@ -36,3 +34,5 @@ The File Client also offers a REST and SOAP interface. Applications can exchange
 Before the File Client can exchange files with the File Server, the File Client has to be registered with the File Server using the clients' SSL client certificates. 
 
 The File Client can also be used for Grote Berichten file transfer.
+
+You can find the Installation and Configuration Guide for the FileClient [here](installation/file-client). The [User Manual](configuration) describes how to configure users and exchange files. [Here](example) you can find an example how to exchange files between the FileServer and FileClient using the default configuration.

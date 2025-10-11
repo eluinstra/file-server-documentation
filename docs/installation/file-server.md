@@ -6,21 +6,22 @@ sidebar_position: 2
 
 ## Prerequisites
 
-- download [file-server-1.0.0](https://github.com/eluinstra/file-server/releases/download/1.0.0/file-server-1.0.0.jar)
+- download [file-server-@file.server.version@](https://github.com/eluinstra/file-server/releases/download/@file.server.version@/file-server-@file.server.version@.jar)
 - JDBC driver for the database (see [here](database.md))
 - Database and user account with create table permissions
 
 ### Optional
 
-- download [file-server-soapui-project.xml](https://github.com/eluinstra/file-server/raw/master/resources/file-server-soapui-project.xml)
+- [OpenAPI Spec](https://github.com/eluinstra/file-server/blob/master/resources/file-server.yml)
+- [SoapUI project file](https://github.com/eluinstra/file-server/raw/master/resources/file-server-soapui-project.xml)
+- [REST project file](https://github.com/eluinstra/file-server/blob/master/resources/file-server.rest) for [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 
 ## Installation
 
-De File Server consists of the following file: file-server-1.0.0.jar
-For configuration of the File Server see [here](#configuration). The application writes logging to a logfile (see [here](#start-with-a-custom-log4j2-file-log4j2xml)). The application also uses a database (see [here](database.md)) to store user and file information and writes the files to a file share.
+`file-server-@file.server.version@.jar` contains the FileServer. You first have to [configure](#configuration) the File Server. The application uses [log4j](#start-with-a-custom-log4j2-file-log4j2xml) for logging. The application also uses a [database](database.md)  to store user and file information for configuration and writes the files to the [filesystem](#filesystem-properties).
 
 - create directory `file-server`
-- copy `file-server-1.0.0.jar` to `file-server`
+- copy `file-server-@file.server.version@.jar` to `file-server`
 - create directory `file-server/files`
 
 ## Configuration
@@ -34,10 +35,10 @@ Create the file `file-server/file-server.properties` and [configure the basic pr
 Start the file-server with the SOAP and REST endpoints default on port 8080 and the File endpoint on port 8443, using JDBC driver \<jdbc-driver>.jar. See [here](database.md) for the supported databases.
 
 ```sh
-java -cp \<jdbc-driver>.jar:file-server-1.0.0.jar dev.luin.file.server.Start
+java -cp <jdbc-driver>.jar:file-server-@file.server.version@.jar dev.luin.file.server.Start
 ```
 
-See [here](#commandline-configuration) for more command line options.
+See [here](#commandline-configuration) for more command line options. See [here](https://eluinstra.github.io/ebms-admin/docs/ebms-admin/ssl) for Keystore Configuration.
 
 ## Properties
 
@@ -81,13 +82,18 @@ jdbc.username=sa
 jdbc.password=
 ```
 
-#### File Properties
+#### FileSystem Properties
 
 ```properties
 file.virtualPathLength=127
 file.baseDir=files
 file.filenameLength=32
 file.maxFileSize=1073741824
+```
+
+#### FileShare Properties
+
+```properties
 file.share.upload.location=shared/upload
 file.share.download.location=shared/download
 ```
@@ -187,7 +193,7 @@ usage: Start [-authentication] [-cipherSuites <arg>]
 #### Start using a PostgreSQL JDBC driver
 
 ```sh
-java -cp postgresql-42.7.3.jar:file-server-1.0.0.jar dev.luin.file.server.Start
+java -cp postgresql-42.7.3.jar:file-server-@file.server.version@.jar dev.luin.file.server.Start
 ```
 
 #### Start on port 8000
@@ -195,7 +201,7 @@ java -cp postgresql-42.7.3.jar:file-server-1.0.0.jar dev.luin.file.server.Start
 Start SOAP/REST endpoint on port 8000 (instead of 8080)
 
 ```sh
-java -cp file-server-1.0.0.jar dev.luin.file.server.Start -port 8000
+java -cp file-server-@file.server.version@.jar dev.luin.file.server.Start -port 8000
 ```
 
 #### Start with config directory conf/
@@ -203,19 +209,21 @@ java -cp file-server-1.0.0.jar dev.luin.file.server.Start -port 8000
 By default the config directory is the directory from which you start the file-server. You can change the config directory by setting `configDir`
 
 ```sh
-java -cp file-server-1.0.0.jar dev.luin.file.server.Start -configDir conf/
+java -cp file-server-@file.server.version@.jar dev.luin.file.server.Start -configDir conf/
 ```
 
 #### Start with a custom log4j2 file log4j2.xml
 
+See [here](https://github.com/eluinstra/file-server/blob/master/src/main/resources/log4j2.xml) for an example `log4j2.xml`.
+
 ```sh
-java -Dlog4j.configurationFile=log4j2.xml -cp file-server-1.0.0.jar dev.luin.file.server.Start
+java -Dlog4j.configurationFile=log4j2.xml -cp file-server-@file.server.version@.jar dev.luin.file.server.Start
 ```
 
 #### Start without using the default Java truststore
 
 ```sh
-java -Djavax.net.ssl.trustStore= -cp file-server-1.0.0.jar dev.luin.file.server.Start
+java -Djavax.net.ssl.trustStore= -cp file-server-@file.server.version@.jar dev.luin.file.server.Start
 ```
 
 #### Start with HTTPS
@@ -223,7 +231,7 @@ java -Djavax.net.ssl.trustStore= -cp file-server-1.0.0.jar dev.luin.file.server.
 Start with HTTPS SOAP/REST endpoint using keystore `keystore.p12`
 
 ```sh
-java -Djavax.net.ssl.trustStore= -cp file-server-1.0.0.jar dev.luin.file.server.Start \
+java -Djavax.net.ssl.trustStore= -cp file-server-@file.server.version@.jar dev.luin.file.server.Start \
 -ssl -keyStoreType PKCS12 -keyStorePath keystore.p12 -keyStorePassword password
 ```
 
@@ -232,7 +240,7 @@ java -Djavax.net.ssl.trustStore= -cp file-server-1.0.0.jar dev.luin.file.server.
 #### Start using IPv4 only sockets
 
 ```sh
-java -Djava.net.preferIPv4Stack=true -cp file-server-1.0.0.jar dev.luin.file.server.Start
+java -Djava.net.preferIPv4Stack=true -cp file-server-@file.server.version@.jar dev.luin.file.server.Start
 ```
 
 #### Start using basic authentication
@@ -240,7 +248,7 @@ java -Djava.net.preferIPv4Stack=true -cp file-server-1.0.0.jar dev.luin.file.ser
 Start using basic authentication on SOAP/REST endpoint.
 
 ```sh
-java -cp file-server-1.0.0.jar dev.luin.file.server.Start -authentication
+java -cp file-server-@file.server.version@.jar dev.luin.file.server.Start -authentication
 ```
 
 #### Start with HTTPS and client authentication
@@ -249,7 +257,7 @@ Start with HTTPS SOAP/REST endpoint using keystore `keystore.p12`
 and require SSL client authentication using truststore `truststore.p12` (which holds the client's certificate chain)
 
 ```sh
-java -Djavax.net.ssl.trustStore= -cp file-server-1.0.0.jar dev.luin.file.server.Start \
+java -Djavax.net.ssl.trustStore= -cp file-server-@file.server.version@.jar dev.luin.file.server.Start \
 -ssl -keyStoreType PKCS12 -keyStorePath keystore.p12 -keyStorePassword password \
 -clientAuthentication -trustStoreType PKCS12 -trustStorePath truststore.p12 -trustStorePassword password
 ```
@@ -261,7 +269,7 @@ and require SSL client authentication using truststore `truststore.p12` (which h
 and authenticate client SSL certificate using `clientTruststore.p12` (which holds the client's certificate)
 
 ```sh
-java -Djavax.net.ssl.trustStore= -cp file-server-1.0.0.jar dev.luin.file.server.Start \
+java -Djavax.net.ssl.trustStore= -cp file-server-@file.server.version@.jar dev.luin.file.server.Start \
 -ssl -keyStoreType PKCS12 -keyStorePath keystore.p12 -keyStorePassword password \
 -clientAuthentication -trustStoreType PKCS12 -trustStorePath truststore.p12 -trustStorePassword password \
 -authentication -clientTrustStoreType PKCS12 -clientTrustStorePath clientTruststore.p12 -clientTrustStorePassword password
@@ -272,5 +280,5 @@ java -Djavax.net.ssl.trustStore= -cp file-server-1.0.0.jar dev.luin.file.server.
 Start Health service on port 8089 (instead of default port 8008)
 
 ```sh
-java -Djavax.net.ssl.trustStore= -cp file-server-1.0.0.jar dev.luin.file.server.Start -health -healthPort 8089
+java -Djavax.net.ssl.trustStore= -cp file-server-@file.server.version@.jar dev.luin.file.server.Start -health -healthPort 8089
 ```

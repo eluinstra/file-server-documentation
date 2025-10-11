@@ -5,6 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const globalVariables = {
+  'file.server.version': '1.0.0',
+  'file.client.version': '1.0.0'
 }
 
 const config: Config = {
@@ -44,7 +46,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/eluinstra/file-server-documentation/tree/documentation',
+            'https://github.com/eluinstra/file-server-documentation/edit/main/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -78,7 +80,7 @@ const config: Config = {
           label: 'Documentation',
         },
         {
-          href: 'https://github.com/eluinstra/file-server-documentation/tree/documentation',
+          href: 'https://github.com/eluinstra/file-server-documentation/',
           label: 'GitHub',
           position: 'right',
         },
