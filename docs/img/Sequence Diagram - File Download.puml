@@ -4,30 +4,14 @@
 skinparam backgroundColor transparent
 ' skinparam responseMessageBelowArrow true
 
-title Exchange Files
+' title File Download
 
 participant "Custom Application" as app
 participant "File Server" as fs
 participant "File Client" as fc
 
-... <b>Downloaden File ...
+autonumber 1
 
-autonumber 1.1
-app -> fs: upload file
-activate fs
-
-fs --> app
-deactivate fs
-
-fc -> fs: download file
-activate fs
-
-fs --> fc
-deactivate fs
-
-... <b>Uploaden File ...
-
-autonumber 2.1
 fc -> fs: upload file
 activate fs
 
@@ -40,5 +24,4 @@ activate fs
 fs --> app
 deactivate fs
 
-...
 @enduml
