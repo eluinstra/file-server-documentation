@@ -4,7 +4,7 @@
 skinparam backgroundColor transparent
 ' skinparam responseMessageBelowArrow true
 
-title Exchange Files
+' title Exchange Files
 
 participant "Custom Application" as app
 participant "File Server" as fs

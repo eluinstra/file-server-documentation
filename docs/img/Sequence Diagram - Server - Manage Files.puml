@@ -54,7 +54,7 @@ deactivate fs
 app -> fs: FileService.downloadFileToFs(path, filename)
 activate fs
 
-fs --> app: <File>
+fs --> app: <FileInfo>
 deactivate fs
 
 ... <b>Delete File ...

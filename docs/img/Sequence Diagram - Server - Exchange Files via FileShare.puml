@@ -4,7 +4,7 @@
 skinparam backgroundColor transparent
 ' skinparam responseMessageBelowArrow true
 
-title Exchange Files via FileShare
+' title Exchange Files via FileShare
 
 participant "Custom Application" as app
 database "File Share" as file
@@ -24,14 +24,14 @@ deactivate file
 app -> fs: FileService.uploadFileFromFs(userId, newFileFromFs)
 activate fs
 
-fs --> app
-deactivate fs
-
 fs -> file: copy file
 activate file
 
 file --> fs
 deactivate file
+
+fs --> app
+deactivate fs
 
 fc -> fs: HTTP download file
 activate fs
@@ -41,7 +41,7 @@ deactivate fs
 
 ... <b>Upload File ...
 
-autonumber 1.1
+autonumber 2.1
 
 fc -> fs: tus upload file
 activate fs
@@ -52,14 +52,14 @@ deactivate fs
 app -> fs: FileService.downloadFileFromFs(path, filename)
 activate fs
 
-fs --> app
-deactivate fs
-
 fs -> file: copy file
 activate file
 
 file --> fs
 deactivate file
+
+fs --> app
+deactivate fs
 
 app -> file: copy file
 activate file

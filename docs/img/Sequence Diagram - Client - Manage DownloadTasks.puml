@@ -1,0 +1,45 @@
+@startuml
+!theme reddress-lightorange
+
+skinparam backgroundColor transparent
+' skinparam responseMessageBelowArrow true
+
+' title Manage DownloadTasks
+
+participant "SOAP/REST Client" as app
+participant "File Client" as fc
+
+... <b>Get All DownloadTasks ...
+
+app -> fc: DownloadService.getDownloadTasks([status[]])
+activate fc
+
+fc --> app: <DownloadTask[]>
+deactivate fc
+
+... <b>Get DownloadTask ...
+
+app -> fc: DownloadService.getDownloadTask(fileId)
+activate fc
+
+fc --> app: <DownloadTask>
+deactivate fc
+
+... <b>Download File ...
+
+app -> fc: DownloadService.downloadFile(url[, startDate][, endDate])
+activate fc
+
+fc --> app: <DownloadTask>
+deactivate fc
+
+... <b>Delete DownloadTask ...
+
+app -> fc: DownloadService.deleteDownloadTask(fileId)
+activate fc
+
+fc --> app
+deactivate fc
+
+...
+@enduml

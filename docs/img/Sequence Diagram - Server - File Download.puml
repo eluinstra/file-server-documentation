@@ -16,7 +16,7 @@ activate fs
 fs --> app: <path>
 deactivate fs
 
-app -> fs: **2.** //GBService.getExternalDataReference(path)//
+app -> fs: //**2.** GBService.getExternalDataReference(path)//
 activate fs
 
 fs --> app: //<externalDataReference>//
