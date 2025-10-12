@@ -14,7 +14,7 @@ participant "File Server" as fs
 app -> fs: FileService.getFiles()
 activate fs
 
-fs --> app: <paths>
+fs --> app: <path[]>
 deactivate fs
 
 ... <b>Get FileInfo ...

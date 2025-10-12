@@ -19,7 +19,7 @@ Before the File Server can exchange files with a client, the client has to be [r
 
 The FileServer can be used for Grote Berichten file transfer.
 
-You can find the Installation and Configuration Guide for the FileServer [here](installation/file-server). The [User Manual](configuration) describes how to configure users and exchange files. [Here](example) you can find an example how to exchange files between the FileServer and FileClient using the default configuration.
+You can find the Installation and Configuration Guide for the FileServer [here](installation/file-server). The [User Manual](configuration) describes how to configure users and exchange files. [Here](example) you can find an example how to exchange files between the FileServer and FileClient using the default configuration. There is also a [Docker example](https://github.com/eluinstra/file-server-docker) available.
 
 ## File Client
 
@@ -35,4 +35,4 @@ Before the File Client can exchange files with the File Server, the File Client 
 
 The File Client can also be used for Grote Berichten file transfer.
 
-You can find the Installation and Configuration Guide for the FileClient [here](installation/file-client). The [User Manual](configuration) describes how to configure users and exchange files. [Here](example) you can find an example how to exchange files between the FileServer and FileClient using the default configuration.
+You can find the Installation and Configuration Guide for the FileClient [here](installation/file-client). The [User Manual](configuration) describes how to configure users and exchange files. [Here](example) you can find an example how to exchange files between the FileServer and FileClient using the default configuration. There is also a [Docker example](https://github.com/eluinstra/file-server-docker) available.

@@ -85,7 +85,9 @@ The FileClient can exchange files using the [download](#file-download-1) and [up
 1. create a `UploadTask` to upload `NewFile` to `creationUrl`
 2. the `FileClient` will start to upload the `file`
 3. the application checks the `status` of the `UploadTask`  
-4. if the status == `SUCCEEDED` then delete the `UploadTask`
+4. if the status == `SUCCEEDED` then Optional: download the `external-data-reference` for Grote Berichten file transfer  
+   Note: The `external-data-reference` contains the full download url to the file
+5. delete the `UploadTask`
 
 ### Exchange Files via FileShare
 

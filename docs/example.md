@@ -10,6 +10,8 @@ sidebar_position: 4
 - download [file-server-@file.server.version@](https://github.com/eluinstra/file-server/releases/download/@file.server.version@/file-server-@file.server.version@.jar) into directory file-server
 - download [file-client-@file.client.version@](https://github.com/eluinstra/file-client/releases/download/@file.client.version@/file-client-@file.client.version@.jar) into directory file-client
 
+**Or** use the [Docker example](https://github.com/eluinstra/file-server-docker).
+
 ### Start the FileServer
 
 ```
@@ -26,8 +28,8 @@ java -cp file-client-@file.client.version@.jar dev.luin.file.client.StartGB -hsq
 
 ### Preparation
 
-- Download and install SoapUI to manage the FileServer and FileClient
-- import [file-server](https://github.com/eluinstra/file-server/raw/master/resources/file-server-soapui-project.xml) and [file-client](https://raw.githubusercontent.com/eluinstra/file-client/raw/master/resources/file-client-soapui-project.xml) into SoapUI (these projects already contain some predefined SOAP Requests)
+- Use SoapUI to manage the FileServer and FileClient **or** use VSCode
+- import [file-server](https://github.com/eluinstra/file-server/raw/master/resources/file-server-soapui-project.xml) and [file-client](https://raw.githubusercontent.com/eluinstra/file-client/raw/master/resources/file-client-soapui-project.xml) into SoapUI (these projects already contain some predefined SOAP Requests) **or** download [file-server](https://github.com/eluinstra/file-server/blob/master/resources/file-server.rest) and [file-client](https://github.com/eluinstra/file-client/blob/master/resources/file-client.rest) for [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 - Start the FileServer and FileClient
 
 ### Usage
