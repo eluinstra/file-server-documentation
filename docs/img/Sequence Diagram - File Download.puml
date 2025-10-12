@@ -10,18 +10,28 @@ participant "Custom Application" as app
 participant "File Server" as fs
 participant "File Client" as fc
 
-autonumber 1
-
-fc -> fs: upload file
+app -> fs: **1.** FileService.uploadFile(userId, newFile)
 activate fs
 
-fs --> fc
+fs --> app: <path>
 deactivate fs
 
-app -> fs: download file
+app -> fs: **2.** //GBService.getExternalDataReference(path)//
 activate fs
 
-fs --> app
+fs --> app: //<externalDataReference>//
+deactivate fs
+
+fc -> fs: **3.** HTTP download file
+activate fs
+
+fs --> fc: <file>
+deactivate fs
+
+app -> fs: **4.** FileService.deleteFile(path)
+activate fs
+
+fs --> app: <succeeded>
 deactivate fs
 
 @enduml

@@ -6,16 +6,16 @@ sidebar_position: 1
 
 ## File Server
 
-The File Server is developed to exchange files with other parties. Files can be uploaded to the File Server using the tus protocol. Files can be downloaded from the File Server using the HTTP protocol. The File Server uses SSL client certificates to authenticate a client.
-You can use the [File Client](#file-client) to exchange files with the File Server. You can also use a tus client to upload files to the File Server and a HTTP client to download files from the File Server.
+The File Server is developed to exchange files with other parties in a safe and reliable way. Clients can upload files to the File Server using the tus protocol and can download files from the File Server using the HTTP protocol. Both upload and download are resumable. The File Server uses SSL client certificates to authenticate a client.
+You can use the [File Client](#file-client) to exchange files with the File Server, but you can also use a tus client to upload files to the File Server and a HTTP client to download files from the File Server.
 
 The File Server stores client and file data in the database and the files on the filesystem.
 
 ![Context Diagram](img/Context%20Digram%20-%20File%20Server.svg)
 
-The File Server offers a REST and a SOAP interface. Applications can exchange files with the File Server through these interfaces directly or use a File Share instead.
+The File Server offers a [REST and a SOAP interface](configuration#file-server). Applications can [exchange files](configuration#exchange-files) with the File Server through these interfaces directly or use a File Share instead.
 
-Before the File Server can exchange files with a client, the client has to be registered with the File Server using its SSL client certificate.
+Before the File Server can exchange files with a client, the client has to be [registered](configuration#manage-users) with the File Server using its SSL client certificate.
 
 The FileServer can be used for Grote Berichten file transfer.
 
@@ -29,7 +29,7 @@ The File Client stores file data in the database and the files on the filesystem
 
 ![Context Diagram](img/Context%20Digram%20-%20File%20Client.svg)
 
-The File Client also offers a REST and SOAP interface. Applications can exchange files with the File Client through these interfaces directly or use a File Share instead.
+The File Client also offers a [REST and SOAP interface](configuration#file-client). Applications can exchange files with the File Client through these interfaces directly or use a File Share instead.
 
 Before the File Client can exchange files with the File Server, the File Client has to be registered with the File Server using the clients' SSL client certificates. 
 

@@ -11,7 +11,7 @@ database "File Share" as file
 participant "File Server" as fs
 participant "File Client" as fc
 
-... <b>Downloaden File ...
+... <b>Download File ...
 
 autonumber 1.1
 
@@ -21,7 +21,7 @@ activate file
 file --> app
 deactivate file
 
-app -> fs: upload file request
+app -> fs: FileService.uploadFileFromFs(userId, newFileFromFs)
 activate fs
 
 fs --> app
@@ -33,23 +33,23 @@ activate file
 file --> fs
 deactivate file
 
-fc -> fs: download file
+fc -> fs: HTTP download file
 activate fs
 
 fs --> fc
 deactivate fs
 
-... <b>Uploaden File ...
+... <b>Upload File ...
 
 autonumber 1.1
 
-fc -> fs: upload file
+fc -> fs: tus upload file
 activate fs
 
 fs --> fc
 deactivate fs
 
-app -> fs: download file request
+app -> fs: FileService.downloadFileFromFs(path, filename)
 activate fs
 
 fs --> app
