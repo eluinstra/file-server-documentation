@@ -1,0 +1,77 @@
+@startuml
+!theme reddress-lightorange
+
+skinparam backgroundColor transparent
+' skinparam responseMessageBelowArrow true
+
+' title Exchange Files
+
+participant "Custom Application" as app
+database "File Share" as file
+participant "File Client" as fc
+participant "File Server" as fs
+
+... <b>Download File ...
+
+autonumber 1.1
+
+app -> fc: DownloadService.downloadFile(url[, startDate][, endDate])
+activate fc
+
+fc --> app: <DownloadTask>
+deactivate fc
+
+fc -> fs: HTTP download file
+activate fs
+
+fs --> fc: <file>
+deactivate fs
+
+app -> fc: FileService.downloadFileToFs(DownloadTask.fileId)
+activate fc
+
+fc -> file: copy file
+activate file
+
+file --> fc
+deactivate file
+
+fc --> app: <File>
+deactivate fc
+
+app -> file: copy file
+activate file
+
+file --> app
+deactivate file
+
+... <b>Upload File ...
+
+autonumber 2.1
+
+app -> file: copy file
+activate file
+
+file --> app
+deactivate file
+
+app -> fc: UploadService.uploadFileFromFs(creationUrl, NewFileFromFs)
+activate fc
+
+fc -> file: copy file
+activate file
+
+file --> fc
+deactivate file
+
+fc --> app: <UploadTask>
+deactivate fc
+
+fc -> fs: tus upload file
+activate fs
+
+fs --> fc
+deactivate fs
+
+...
+@enduml

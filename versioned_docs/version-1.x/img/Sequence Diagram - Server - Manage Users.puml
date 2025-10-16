@@ -1,0 +1,53 @@
+@startuml
+!theme reddress-lightorange
+
+skinparam backgroundColor transparent
+' skinparam responseMessageBelowArrow true
+
+' title Manage User
+
+participant "SOAP/REST Client" as app
+participant "File Server" as fs
+
+... <b>Get All Users ...
+
+app -> fs: UserService.getUsers()
+activate fs
+
+fs --> app: <UserInfo[]>
+deactivate fs
+
+... <b>Register User ...
+
+app -> fs: UserService.createUser(NewUser)
+activate fs
+
+fs --> app: <userId>
+deactivate fs
+
+... <b>Get User ...
+
+app -> fs: UserService.getUser(userId)
+activate fs
+
+fs --> app: <UserInfo>
+deactivate fs
+
+... <b>Update User ...
+
+app -> fs: UserService.updateUser(UserInfo)
+activate fs
+
+fs --> app
+deactivate fs
+
+... <b>Delete User ...
+
+app -> fs: UserService.deleteUser(userId)
+activate fs
+
+fs --> app
+deactivate fs
+
+...
+@enduml

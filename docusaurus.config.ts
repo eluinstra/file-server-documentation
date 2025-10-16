@@ -5,9 +5,16 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const globalVariables = {
-  'branch': '1.x',
-  'file.server.version': '1.0.0',
-  'file.client.version': '1.0.0'
+  'current': {
+    'branch': '2.x',
+    'file.server.version': '2.0.0',
+    'file.client.version': '2.0.0'
+  },
+  '1.x': {
+    'branch': '1.x',
+    'file.server.version': '1.0.0',
+    'file.client.version': '1.0.0'
+  }
 }
 
 const config: Config = {
@@ -43,6 +50,14 @@ const config: Config = {
       'classic',
       {
         docs: {
+          // includeCurrentVersion: false,
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: '2.x',
+              path: '',
+            },
+          },    
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -57,11 +72,23 @@ const config: Config = {
   ],
   markdown: {
     preprocessor: ({filePath, fileContent}) => {
-      let content = fileContent;
-      for (const variable in globalVariables) {
-        content = content.replaceAll('@'+variable+'@', globalVariables[variable]);
+      var key = '';
+      var found = false;
+      for (key in globalVariables) {
+        let folderName = (key == 'current' ? 'current' : `version-${key}`);
+        if (filePath.includes(`/${folderName}/`)) {
+          found = true;
+          break;
+        }
       }
-      return content;
+      if (key == '' || !found) {
+        key = 'current';
+      }
+      let content = fileContent;
+      for (const variable in globalVariables[key]) {
+        content = content.replaceAll('@'+variable+'@', globalVariables[key][variable]);
+      }
+      return content
     },
   },
   themeConfig: {
@@ -74,6 +101,9 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
+        {
+          type: 'docsVersionDropdown',
+        },
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',

@@ -1,0 +1,33 @@
+@startuml
+!theme reddress-lightorange
+
+skinparam backgroundColor transparent
+' skinparam responseMessageBelowArrow true
+
+' title File Upload
+
+participant "Custom Application" as app
+participant "File Server" as fs
+participant "File Client" as fc
+
+fc -> fs: **1.** tus upload file
+activate fs
+
+fs --> fc
+deactivate fs
+
+app -> fs: **2.** FileService.downloadFile(path)
+activate fs
+
+fs --> app: <File>
+deactivate fs
+
+app -> app: **3.** process file
+
+app -> fs: **4.** FileService.deleteFile(path)
+activate fs
+
+fs --> app: <succeeded>
+deactivate fs
+
+@enduml

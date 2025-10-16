@@ -1,0 +1,49 @@
+@startuml
+!theme reddress-lightorange
+
+skinparam backgroundColor transparent
+' skinparam responseMessageBelowArrow true
+
+' title File Download
+
+participant "Custom Application" as app
+participant "File Client" as fc
+participant "File Server" as fs
+
+app -> fc: **1.** UploadService.uploadFile(creationUrl, NewFile)
+activate fc
+
+fc --> app: <UploadTask>
+deactivate fc
+
+fc -> fs: **2.** tus upload file
+activate fs
+
+loop until uploadTask.status != SUCCEEDED|FAILED
+  app -> fc: **3.** UploadService.getuploadTask(uploadTask.fileId)
+  activate fc
+
+  fc --> app: <uploadTask>
+  deactivate fc
+end
+
+fs --> fc
+deactivate fs
+
+alt uploadTask.status == SUCCEEDED
+  app -> fc: //**4.** GBService.getExternalDataReference(id[])//
+  activate fc
+
+  fc --> app: //<externalDataReference>//
+  deactivate fc
+
+  app -> fc: **5.** UploadService.deleteuploadTask(uploadTask.fileId)
+  activate fc
+
+  fc --> app
+  deactivate fc
+else uploadTask.status == FAILED
+  rnote over app: handle error
+end
+
+@enduml

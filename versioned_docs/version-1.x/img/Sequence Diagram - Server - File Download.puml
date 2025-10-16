@@ -1,0 +1,37 @@
+@startuml
+!theme reddress-lightorange
+
+skinparam backgroundColor transparent
+' skinparam responseMessageBelowArrow true
+
+' title File Download
+
+participant "Custom Application" as app
+participant "File Server" as fs
+participant "File Client" as fc
+
+app -> fs: **1.** FileService.uploadFile(userId, newFile)
+activate fs
+
+fs --> app: <path>
+deactivate fs
+
+app -> fs: //**2.** GBService.getExternalDataReference(path[])//
+activate fs
+
+fs --> app: //<externalDataReference>//
+deactivate fs
+
+fc -> fs: **3.** HTTP download file
+activate fs
+
+fs --> fc: <file>
+deactivate fs
+
+app -> fs: **4.** FileService.deleteFile(path)
+activate fs
+
+fs --> app: <succeeded>
+deactivate fs
+
+@enduml

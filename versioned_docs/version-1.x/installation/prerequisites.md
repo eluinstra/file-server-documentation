@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Prerequisites
 
-- install JDK/JRE 17
+- install JDK/JRE 11
 
 ## Optional
 

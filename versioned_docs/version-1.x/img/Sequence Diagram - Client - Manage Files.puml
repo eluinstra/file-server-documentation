@@ -1,0 +1,61 @@
+@startuml
+!theme reddress-lightorange
+
+skinparam backgroundColor transparent
+' skinparam responseMessageBelowArrow true
+
+' title Manage Files
+
+participant "SOAP/REST Client" as app
+participant "File Client" as fc
+
+... <b>Upload File ...
+
+app -> fc: UploadService.uploadFile(creationUrl, NewFile)
+activate fc
+
+fc --> app: <UploadTask>
+deactivate fc
+
+... <b>Upload File from FileShare...
+
+app -> fc: UploadService.uploadFileFromFs(creationUrl, NewFileFromFs)
+activate fc
+
+fc --> app: <UploadTask>
+deactivate fc
+
+... <b>Get FileInfo ...
+
+app -> fc: UploadService.getFileInfo(id)
+activate fc
+
+fc --> app: <FileInfo>
+deactivate fc
+
+... <b>Download File ...
+
+app -> fc: UploadService.downloadFile(id)
+activate fc
+
+fc --> app: <File>
+deactivate fc
+
+... <b>Download File To FileShare...
+
+app -> fc: UploadService.downloadFileToFs(id, filename)
+activate fc
+
+fc --> app: <FileInfo>
+deactivate fc
+
+... <b>Delete File ...
+
+app -> fc: UploadService.deleteFile(path[, force])
+activate fc
+
+fc --> app
+deactivate fc
+
+...
+@enduml

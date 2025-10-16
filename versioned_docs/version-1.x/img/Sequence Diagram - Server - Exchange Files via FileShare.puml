@@ -1,0 +1,71 @@
+@startuml
+!theme reddress-lightorange
+
+skinparam backgroundColor transparent
+' skinparam responseMessageBelowArrow true
+
+' title Exchange Files via FileShare
+
+participant "Custom Application" as app
+database "File Share" as file
+participant "File Server" as fs
+participant "File Client" as fc
+
+... <b>Download File ...
+
+autonumber 1.1
+
+app -> file: copy file
+activate file
+
+file --> app
+deactivate file
+
+app -> fs: FileService.uploadFileFromFs(userId, newFileFromFs)
+activate fs
+
+fs -> file: copy file
+activate file
+
+file --> fs
+deactivate file
+
+fs --> app
+deactivate fs
+
+fc -> fs: HTTP download file
+activate fs
+
+fs --> fc
+deactivate fs
+
+... <b>Upload File ...
+
+autonumber 2.1
+
+fc -> fs: tus upload file
+activate fs
+
+fs --> fc
+deactivate fs
+
+app -> fs: FileService.downloadFileFromFs(path, filename)
+activate fs
+
+fs -> file: copy file
+activate file
+
+file --> fs
+deactivate file
+
+fs --> app
+deactivate fs
+
+app -> file: copy file
+activate file
+
+file --> app
+deactivate file
+
+...
+@enduml

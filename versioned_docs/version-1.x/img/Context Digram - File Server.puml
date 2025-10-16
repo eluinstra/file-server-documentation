@@ -1,0 +1,25 @@
+@startuml
+!include <C4/C4_Container>
+' !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+skinparam backgroundColor transparent
+
+Boundary(b0, "", "") {
+    System_Ext(app0, "Custom Application\n[REST | SOAP Client]", "Application that wants to send or receive large files")
+    SystemDb_Ext(file0, "File Share\n[Optional]", "Holds Files")
+    System(fs, "File Server", "Receives files through TUS Protocol and exposes files through HTTP Protocol")
+}
+System_Ext(fc, "File Client", "Uploads files through the TUS protocol and downloads files through HTTP Protocol")
+System_Ext(tus, "TUS Client", "Uploads files through the TUS protocol")
+System_Ext(http, "HTTP Client", "Downloads files through HTTP Protocol")
+
+Rel_R(app0, fs, "Uploads File(UploadRequest)s and downloads File(DownloadRequest)s", "REST|SOAP/HTTPS")
+Rel(app0, file0, "Stores and Retrieves Files", "File")
+Rel(fs, file0, "Stores and Retrieves Files", "File")
+Rel_D(fc, fs, "Uploads and Downloads Files", "TUS&HTTP/HTTPS ")
+Rel_L(tus, fs, "Uploads Files", "TUS/HTTPS ")
+Rel_U(http, fs, "Download Files", "HTTP/HTTPS")
+
+SHOW_DYNAMIC_LEGEND()
+
+@enduml

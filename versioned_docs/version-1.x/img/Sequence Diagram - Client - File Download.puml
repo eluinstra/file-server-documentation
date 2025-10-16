@@ -1,0 +1,52 @@
+@startuml
+!theme reddress-lightorange
+
+skinparam backgroundColor transparent
+' skinparam responseMessageBelowArrow true
+
+' title DownloadService
+
+participant "Custom Application" as app
+participant "File Client" as fc
+participant "File Server" as fs
+
+app -> fc: **1.** DownloadService.downloadFile(url[, startDate][, endDate])
+activate fc
+
+fc --> app: <DownloadTask>
+deactivate fc
+
+fc -> fs: **2.** HTTP download file
+activate fs
+
+loop until DownloadTask.status != SUCCEEDED|FAILED
+  app -> fc: **3.** DownloadService.getDownloadTask(DownloadTask.fileId)
+  activate fc
+
+  fc --> app: <DownloadTask>
+  deactivate fc
+end
+
+fs --> fc: <file>
+deactivate fs
+
+alt DownloadTask.status == SUCCEEDED
+  app -> fc: **4.** FileService.downloadFile(DownloadTask.fileId)
+  activate fc
+
+  fc --> app: <File>
+  deactivate fc
+
+  app -> app: **5.** process file
+
+  app -> fc: **6.** DownloadService.deleteDownloadTask(DownloadTask.fileId)
+  activate fc
+
+  fc --> app
+  deactivate fc
+else DownloadTask.status == FAILED
+  rnote over app: handle error
+end
+
+
+@enduml
