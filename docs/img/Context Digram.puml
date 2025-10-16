@@ -16,12 +16,12 @@ Boundary(b1, "", "") {
 }
 
 Rel_R(app0, fs, "Uploads File(UploadRequest)s and downloads File(DownloadRequest)s", "REST|SOAP/HTTPS")
-Rel(app0, file0, "Stores and Retreives Files", "File")
-Rel(fs, file0, "Stores and Retreives Files", "File")
+Rel(app0, file0, "Stores and Retrieves Files", "File")
+Rel(fs, file0, "Stores and Retrieves Files", "File")
 Rel_L(fc, fs, "Uploads and Downloads Files", "TUS&HTTPGET/HTTPS ")
 Rel_L(app1, fc, "Uploads File(UploadRequest)s and downloads File(DownloadRequest)s", "REST|SOAP/HTTPS")
-Rel(app1, file1, "Stores and Retreives Files", "File")
-Rel(fc, file1, "Stores and Retreives Files", "File")
+Rel(app1, file1, "Stores and Retrieves Files", "File")
+Rel(fc, file1, "Stores and Retrieves Files", "File")
 
 SHOW_DYNAMIC_LEGEND()
 

@@ -5,6 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const globalVariables = {
+  'branch': '1.x',
   'file.server.version': '1.0.0',
   'file.client.version': '1.0.0'
 }

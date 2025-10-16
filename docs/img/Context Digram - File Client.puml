@@ -12,8 +12,8 @@ Boundary(b0, "", "") {
 System_Ext(fs, "File Server", "Receives files through TUS Protocol and exposes files through HTTP Protocol")
 
 Rel_R(app0, fc, "Uploads File(UploadRequest)s and downloads File(DownloadRequest)s", "REST|SOAP/HTTPS")
-Rel(app0, file0, "Stores and Retreives Files", "File")
-Rel(fc, file0, "Stores and Retreives Files", "File")
+Rel(app0, file0, "Stores and Retrieves Files", "File")
+Rel(fc, file0, "Stores and Retrieves Files", "File")
 Rel_R(fc, fs, "Uploads and Downloads Files", "TUS&HTTP/HTTPS ")
 
 SHOW_DYNAMIC_LEGEND()

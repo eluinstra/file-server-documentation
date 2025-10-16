@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Install the FileClient
+# Install the File Client
 
 ## Prerequisites
 
@@ -12,13 +12,13 @@ sidebar_position: 3
 
 ### Optional
 
-- [OpenAPI Spec](https://github.com/eluinstra/file-client/blob/master/resources/file-client.yml)
-- [SoapUI project file](https://github.com/eluinstra/file-client/raw/master/resources/file-client-soapui-project.xml)
-- [REST project file](https://github.com/eluinstra/file-client/blob/master/resources/file-client.rest) for [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+- [OpenAPI Spec](https://github.com/eluinstra/file-client/blob/@branch@/resources/file-client.yml)
+- [SoapUI project file](https://github.com/eluinstra/file-client/raw/@branch@/resources/file-client-soapui-project.xml)
+- [REST project file](https://github.com/eluinstra/file-client/blob/@branch@/resources/file-client.rest) for [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 
 ## Installation
 
-`file-client-@file.client.version@.jar` contains the FileClient. You first have to [configure](#configuration) the File Client. The application uses [log4j](#start-with-a-custom-log4j2-file-log4j2xml) for logging. The application also uses a [database](database.md)  to store user and file information for configuration and writes the files to the [filesystem](#filesystem-properties).
+`file-client-@file.client.version@.jar` contains the File Client. You first have to [configure](#configuration) the File Client. The application uses [log4j](#start-with-a-custom-log4j2-file-log4j2xml) for logging. The application also uses a [database](database.md)  to store user and file information for configuration and writes the files to the [filesystem](#filesystem-properties).
 
 - create directory `file-client`
 - copy `file-client-@file.client.version@.jar` to `file-client`
@@ -32,7 +32,7 @@ Create the file `file-client/file-client.properties` and [configure the basic pr
 
 ## Start
 
-Start the file-client with the SOAP and REST endpoints default on port 8000, using JDBC driver \<jdbc-driver>.jar. See [here](database.md) for the supported databases.
+Start the file-client with the REST and SOAP endpoints default on port 8000, using JDBC driver \<jdbc-driver>.jar. See [here](database.md) for the supported databases.
 
 ```sh
 java -cp <jdbc-driver>.jar:file-client-@file.client.version@.jar dev.luin.file.client.Start
@@ -211,7 +211,7 @@ java -cp file-client-@file.client.version@.jar dev.luin.file.client.Start -confi
 
 #### Start with a custom log4j2 file log4j2.xml
 
-See [here](https://github.com/eluinstra/file-client/blob/master/src/main/resources/log4j2.xml) for an example `log4j2.xml`.
+See [here](https://github.com/eluinstra/file-client/blob/@branch@/src/main/resources/log4j2.xml) for an example `log4j2.xml`.
 
 ```sh
 java -Dlog4j.configurationFile=log4j2.xml -cp file-client-@file.client.version@.jar dev.luin.file.client.Start

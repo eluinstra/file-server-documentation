@@ -23,7 +23,7 @@ The File Server and Client support the following databases:
 
 The File-Server and File-Client support automatic database migration through Flyway. You have to provide a database user with create table permissions so the tables are created automatically when the application is started for the first time.
 
-The database scripts for the File-Server can also be found [here](https://github.com/eluinstra/file-server-core/tree/master/src/main/resources/dev/luin/file/server/core/db/migration) and the database scripts for the File-Server can also be found [here](https://github.com/eluinstra/file-client-core/tree/master/src/main/resources/dev/luin/file/client/core/db/migration).
+The database scripts for the File-Server can also be found [here](https://github.com/eluinstra/file-server-core/tree/@branch@/src/main/resources/dev/luin/file/server/core/db/migration) and the database scripts for the File-Server can also be found [here](https://github.com/eluinstra/file-client-core/tree/@branch@/src/main/resources/dev/luin/file/client/core/db/migration).
 
 ## Database Configuration
 

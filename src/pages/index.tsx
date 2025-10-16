@@ -34,7 +34,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="FileServer for secure file upload and download">
+      description="File Server for secure file upload and download">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Install the FileServer
+# Install the File Server
 
 ## Prerequisites
 
@@ -12,13 +12,13 @@ sidebar_position: 2
 
 ### Optional
 
-- [OpenAPI Spec](https://github.com/eluinstra/file-server/blob/master/resources/file-server.yml)
-- [SoapUI project file](https://github.com/eluinstra/file-server/raw/master/resources/file-server-soapui-project.xml)
-- [REST project file](https://github.com/eluinstra/file-server/blob/master/resources/file-server.rest) for [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+- [OpenAPI Spec](https://github.com/eluinstra/file-server/blob/@branch@/resources/file-server.yml)
+- [SoapUI project file](https://github.com/eluinstra/file-server/raw/@branch@/resources/file-server-soapui-project.xml)
+- [REST project file](https://github.com/eluinstra/file-server/blob/@branch@/resources/file-server.rest) for [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 
 ## Installation
 
-`file-server-@file.server.version@.jar` contains the FileServer. You first have to [configure](#configuration) the File Server. The application uses [log4j](#start-with-a-custom-log4j2-file-log4j2xml) for logging. The application also uses a [database](database.md)  to store user and file information for configuration and writes the files to the [filesystem](#filesystem-properties).
+`file-server-@file.server.version@.jar` contains the File Server. You first have to [configure](#configuration) the File Server. The application uses [log4j](#start-with-a-custom-log4j2-file-log4j2xml) for logging. The application also uses a [database](database.md)  to store user and file information for configuration and writes the files to the [filesystem](#filesystem-properties).
 
 - create directory `file-server`
 - copy `file-server-@file.server.version@.jar` to `file-server`
@@ -32,7 +32,7 @@ Create the file `file-server/file-server.properties` and [configure the basic pr
 
 ## Start
 
-Start the file-server with the SOAP and REST endpoints default on port 8080 and the File endpoint on port 8443, using JDBC driver \<jdbc-driver>.jar. See [here](database.md) for the supported databases.
+Start the file-server with the REST and SOAP endpoints default on port 8080 and the File endpoint on port 8443, using JDBC driver \<jdbc-driver>.jar. See [here](database.md) for the supported databases.
 
 ```sh
 java -cp <jdbc-driver>.jar:file-server-@file.server.version@.jar dev.luin.file.server.Start
@@ -214,7 +214,7 @@ java -cp file-server-@file.server.version@.jar dev.luin.file.server.Start -confi
 
 #### Start with a custom log4j2 file log4j2.xml
 
-See [here](https://github.com/eluinstra/file-server/blob/master/src/main/resources/log4j2.xml) for an example `log4j2.xml`.
+See [here](https://github.com/eluinstra/file-server/blob/@branch@/src/main/resources/log4j2.xml) for an example `log4j2.xml`.
 
 ```sh
 java -Dlog4j.configurationFile=log4j2.xml -cp file-server-@file.server.version@.jar dev.luin.file.server.Start
