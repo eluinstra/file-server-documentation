@@ -6,6 +6,10 @@ sidebar_position: 3
 
 ## Prerequisites
 
+:::note
+File Client 2.0 is compatible with File Server 1.0
+:::
+
 - download [file-client-@file.client.version@](https://github.com/eluinstra/file-client/releases/download/@file.client.version@/file-client-@file.client.version@.jar)
 - JDBC driver for the database (see [here](database.md))
 - Database and user account with create table permissions

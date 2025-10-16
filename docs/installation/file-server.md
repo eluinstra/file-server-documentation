@@ -6,6 +6,10 @@ sidebar_position: 2
 
 ## Prerequisites
 
+:::note
+File Server 2.0 is compatible with File Client 1.0
+:::
+
 - download [file-server-@file.server.version@](https://github.com/eluinstra/file-server/releases/download/@file.server.version@/file-server-@file.server.version@.jar)
 - JDBC driver for the database (see [here](database.md))
 - Database and user account with create table permissions
@@ -54,6 +58,8 @@ server.path=/files
 server.ssl=true
 server.clientCertificateHeader=
 server.baseUrl=${server.protocol}://${server.host}:${server.port}${server.path}
+server.upload.maxMBsPerSeconds = 25
+server.download.maxMBsPerSeconds = 25
 ```
 
 #### SSL Keystore Properties
@@ -155,8 +161,8 @@ usage: Start [-authentication] [-cipherSuites <arg>]
        [-hsqldbDir <arg>] [-jmx] [-jmxAccessFile <arg>] [-jmxPasswordFile
        <arg>] [-jmxPort <arg>] [-keyStorePassword <arg>] [-keyStorePath
        <arg>] [-keyStoreType <arg>] [-path <arg>] [-port <arg>]
-       [-protocols <arg>] [-ssl] [-trustStorePassword <arg>]
-       [-trustStorePath <arg>] [-trustStoreType <arg>]
+       [-protocols <arg>] [-trustStorePassword <arg>] [-trustStorePath
+       <arg>] [-trustStoreType <arg>]
  -authentication                   enable basic | client certificate authentication
  -cipherSuites <arg>               set SSL CipherSuites [default: <none>]
  -clientAuthentication             enable SSL client authentication
@@ -182,7 +188,6 @@ usage: Start [-authentication] [-cipherSuites <arg>]
  -path <arg>                       set path [default: /]
  -port <arg>                       set port [default: <8080|8443>]
  -protocols <arg>                  set SSL Protocols [default: <none>]
- -ssl                              enable SSL
  -trustStorePassword <arg>         set truststore password [default: <none>]
  -trustStorePath <arg>             set truststore path [default: <none>]
  -trustStoreType <arg>             set truststore type [default: PKCS12]

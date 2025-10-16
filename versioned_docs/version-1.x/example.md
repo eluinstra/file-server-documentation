@@ -6,7 +6,7 @@ sidebar_position: 4
 
 ## Prerequisites
 
-- Install JDK/JRE 11
+- Install JDK/JRE 17
 - download [file-server-@file.server.version@](https://github.com/eluinstra/file-server/releases/download/@file.server.version@/file-server-@file.server.version@.jar) into directory file-server
 - download [file-client-@file.client.version@](https://github.com/eluinstra/file-client/releases/download/@file.client.version@/file-client-@file.client.version@.jar) into directory file-client
 
