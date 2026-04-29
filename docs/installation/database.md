@@ -27,7 +27,7 @@ The database scripts for the File-Server can also be found [here](https://github
 
 ## Database Configuration
 
-You can find the JDBC settings for the supported databases as well as links to the JDBC drivers below.
+You can find the JDBC settings for the supported databases as well as links to the JDBC drivers and Flyway database drivers below. You can add/change the JDBC settings in the `application.properties` file of the File-Server and File-Client. The `application.properties` file is located in the `config` folder of the File-Server and File-Client. You should also add the JDBC driver and the Flyway database driver to the classpath of the File-Server and File-Client. You can do this by adding the JDBC driver and the flyway database driver to the `lib` folder of the File-Server and File-Client.
 
 ### Common Properties
 
@@ -46,7 +46,9 @@ jdbc.driverClassName=com.ibm.db2.jcc.DB2XADataSource
 jdbc.url=jdbc:db2://<host>:<port>/<dbname>
 ```
 
-Download drivers [here](https://www.ibm.com/support/pages/db2-jdbc-driver-versions-and-downloads)
+Download JDBC drivers [here](https://www.ibm.com/support/pages/db2-jdbc-driver-versions-and-downloads)
+
+Download the right flyway-db2 driver [here](https://repo1.maven.org/maven2/org/flywaydb/flyway-database-db2/12.4.0/flyway-database-db2-12.4.0.jar) and add it to the classpath next to the database driver
 
 ### H2
 
@@ -63,6 +65,8 @@ jdbc.url=jdbc:h2:<path>
 jdbc.url=jdbc:h2:tcp://<host>:<port>/<path>
 ```
 
+Download JDBC drivers [here](https://www.h2database.com/html/download.html)
+
 ### HSQLDB
 
 ```properties
@@ -78,6 +82,10 @@ jdbc.url=jdbc:hsqldb:file:<path>
 jdbc.url=jdbc:hsqldb:hsql://<host>:<port>/<dbname>
 ```
 
+Download JDBC drivers [here](http://hsqldb.org/)
+
+Download the right flyway-hsqldb driver [here](https://repo1.maven.org/maven2/org/flywaydb/flyway-database-hsqldb/12.4.0/flyway-database-hsqldb-12.4.0.jar) and add it to the classpath next to the database driver
+
 ### MariaDB
 
 ```properties
@@ -88,10 +96,9 @@ jdbc.driverClassName=org.mariadb.jdbc.MySQLDataSource
 jdbc.url=jdbc:mariadb://<host>:<port>/<dbname>
 ```
 
-Download drivers [here](https://downloads.mariadb.org/connector-java/)
+Download JDBC drivers [here](https://downloads.mariadb.org/connector-java/)
 
-Download the right flyway-mysql driver [here](https://mvnrepository.com/artifact/org.flywaydb/flyway-mysql) and add it to the classpath next to the database driver
-Check the pom.xml of File-Server or File-Client for the right version of the flyway-mysql library
+Download the right flyway-mysql driver [here](https://repo1.maven.org/maven2/org/flywaydb/flyway-mysql/12.4.0/flyway-mysql-12.4.0.jar) and add it to the classpath next to the database driver
 
 ### MS SQL Server
 
@@ -107,8 +114,7 @@ jdbc.url=jdbc:sqlserver://<host>:<port>;[instanceName=<instanceName>;]databaseNa
 
 Download drivers [here](https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server)
 
-Download the right flyway-sqlserver driver [here](https://mvnrepository.com/artifact/org.flywaydb/flyway-sqlserver) and add it to the classpath next to the database driver
-Check the pom.xml of File-Server or File-Client for the right version of the flyway-sqlserver library
+Download the right flyway-sqlserver driver [here](https://repo1.maven.org/maven2/org/flywaydb/flyway-sqlserver/12.4.0/flyway-sqlserver-12.4.0.jar) and add it to the classpath next to the database driver
 
 ### MySQL
 
@@ -120,7 +126,9 @@ jdbc.driverClassName=com.mysql.cj.jdbc.MysqlXADataSource
 jdbc.url=jdbc:mysql://<host>:<port>/<dbname>
 ```
 
-Download drivers [here](https://dev.mysql.com/downloads/connector/j/)
+Download JDBC drivers [here](https://dev.mysql.com/downloads/connector/j/)
+
+Download the right flyway-mysql driver [here](https://repo1.maven.org/maven2/org/flywaydb/flyway-mysql/12.4.0/flyway-mysql-12.4.0.jar) and add it to the classpath next to the database driver
 
 ### Oracle
 
@@ -132,7 +140,9 @@ jdbc.driverClassName=oracle.jdbc.xa.client.OracleXADataSource
 jdbc.url=jdbc:oracle:thin:@<host>:<port>:<dbname>
 ```
 
-Download drivers [here](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html)
+Download JDBC drivers [here](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html)
+
+Download the right flyway-oracle driver [here](https://repo1.maven.org/maven2/org/flywaydb/flyway-database-oracle/12.4.0/flyway-database-oracle-12.4.0.jar) and add it to the classpath next to the database driver
 
 ### PostgreSQL
 
@@ -144,4 +154,6 @@ jdbc.driverClassName=org.postgresql.xa.PGXADataSource
 jdbc.url=jdbc:postgresql://<host>:<port>/<dbname>
 ```
 
-Download drivers [here](https://jdbc.postgresql.org/download.html)
+Download JDBC drivers [here](https://jdbc.postgresql.org/download.html)
+
+Download the right flyway-postgresql driver [here](https://repo1.maven.org/maven2/org/flywaydb/flyway-database-postgresql/12.4.0/flyway-database-postgresql-12.4.0.jar) and add it to the classpath next to the database driver

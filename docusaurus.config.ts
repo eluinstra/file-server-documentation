@@ -7,8 +7,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 const globalVariables = {
   'current': {
     'branch': '2.x',
-    'file.server.version': '2.0.0',
-    'file.client.version': '2.0.0'
+    'file.server.version': '2.1.1',
+    'file.client.version': '2.1.1'
   },
   '1.x': {
     'branch': '1.x',
